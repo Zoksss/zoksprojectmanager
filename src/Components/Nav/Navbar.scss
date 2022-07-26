@@ -1,6 +1,7 @@
 @import "../../styles/_variables.scss";
 
 .navbar{
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -14,4 +15,35 @@
 
 .nav-title-highlight{
     color: $purple;
+}
+
+.nav-back-arrow{
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    height: 58px;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    border-radius: 16px;
+    transition: $transition;
+    &:hover{
+        transform: scale(1.1);
+    }
+
+    img{
+        height: 100%;
+        transform: rotate(180deg);
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    .navbar{
+        h1{
+            margin-left: 60px !important;
+        }
+    }
 }
