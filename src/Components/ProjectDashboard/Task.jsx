@@ -3,12 +3,12 @@ import Check from "../../images/check.png"
 import X from "../../images/x.png"
 
 
-function Task() {
+function Task(props) {
     return (
         <div className="task-wrapper">
-            <div className="task-text">Create header for website</div>
+            <div className="task-text">{props.text}</div>
             <button className="finish-task-btn"><img src={Check} alt="" /></button>
-            <button className="delete-task-btn"><img src={X} alt="" /></button>
+            <button className="delete-task-btn" onClick={() => props.deleteTask(props.id)}><img src={X} alt="" /></button>
         </div>
     );
 }

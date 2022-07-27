@@ -4,7 +4,7 @@ import ClockImg from "../../../src/images/clock.png"
 
 function ProjectCard(props) {
     return (
-        <div className="project-card">
+        <div className="project-card" onClick={() => { props.setIsDashboard(true); props.setCurrId(props.id); }}>
             <p className="project-card-top-title">Project</p>
             <h2 className="project-card-title">{props.name}</h2>
             <h2 className="project-card-for-title">{props.subline}</h2>

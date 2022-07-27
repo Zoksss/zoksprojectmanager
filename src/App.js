@@ -15,32 +15,27 @@ import "./styles/style.scss";
 function App() {
   const [allCards, setAllCards] = useState([]);
   const [creatingNewCard, setCreatingNewCard] = useState(false);
+  const [isDashboard, setIsDashboard] = useState(false);
+
+  const [currId, setCurrId] = useState(0);
 
 
   const creatNewCard = (name, subline) => {
     console.log("new card added" + name + subline);
-    let t = allCards;
-    t.push({ name: name, subline: subline });
+    let t = [...allCards];
+    t.push({ name: name, subline: subline, tasks: [], isFinished: false});
     setAllCards(t);
     console.log(allCards);
   }
 
-  const cards = allCards.map(card => {
-    return < ProjectCard name={card.name} subline={card.subline}/>
+  const cards = isDashboard === false && allCards.map((card, i) => {
+    return < ProjectCard key={i} id={i} setIsDashboard={setIsDashboard} name={card.name} subline={card.subline} setCurrId={setCurrId}/>
   })
+
   return (
     <div className="App">
-      <Navbar />
-      < ProjectDashboard />
-    </div>
-  );
-}
-
-export default App;
-
-/*
-<NewCard creatingNewCard={creatingNewCard} setCreatingNewCard={setCreatingNewCard} creatNewCard={creatNewCard} />
-      <Navbar />
+      <NewCard creatingNewCard={creatingNewCard} setCreatingNewCard={setCreatingNewCard} creatNewCard={creatNewCard} />
+      <Navbar setIsDashboard={setIsDashboard} isDashboard={isDashboard}/>
       <div className="dashboard-selector-container">
         <h1 className="dashboard-selector-title">Dashboard</h1>
         <a className="active-dashboard hover-underline-animation" href="#">ACTIVE PROJECTS</a>
@@ -51,5 +46,10 @@ export default App;
         {cards}
       </div>
       <Sidebar />
+      < ProjectDashboard isDashboard={isDashboard} allCards={allCards} setAllCards={setAllCards} id={1} currId={currId} />
+    </div>
+  );
+}
 
-      */
+export default App;
+
