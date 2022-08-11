@@ -17,8 +17,11 @@
     text-decoration: none;
     color: $light;
     margin-left: 3px;
+    transition: $transition;
+
   }
   .active-dashboard{
+    transition: $transition;
     color: $darkpurple;
     border-bottom: 4px solid $darkpurple;
   }

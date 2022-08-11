@@ -17,6 +17,8 @@ function App() {
   const [creatingNewCard, setCreatingNewCard] = useState(false);
   const [isDashboard, setIsDashboard] = useState(false);
 
+  const [isFinishedShown, setIsFinishedShown] = useState(false);
+
   const [currId, setCurrId] = useState(-1);
 
 
@@ -29,7 +31,7 @@ function App() {
   }
 
   const cards = isDashboard === false && allCards.map((card, i) => {
-    return < ProjectCard key={i} id={i} setIsDashboard={setIsDashboard} name={card.name} subline={card.subline} setCurrId={setCurrId} taskStatus={card.taskStatus}/>
+    return (isFinishedShown? card.isFinished :  !card.isFinished) && < ProjectCard key={i} id={i} isDashboard={isDashboard} setIsDashboard={setIsDashboard} name={card.name} subline={card.subline} setCurrId={setCurrId} taskStatus={card.taskStatus}/>
   })
 
   return (
@@ -38,15 +40,15 @@ function App() {
       <Navbar setIsDashboard={setIsDashboard} isDashboard={isDashboard}/>
       <div className="dashboard-selector-container">
         <h1 className="dashboard-selector-title">Dashboard</h1>
-        <a className="active-dashboard hover-underline-animation" href="#">ACTIVE PROJECTS</a>
-        <a className="hover-underline-animation" href="#">COMPLETED PROJECTS</a>
+        <a className={`hover-underline-animation ${!isFinishedShown?"active-dashboard":""}`} href="#" onClick={() => setIsFinishedShown(false)}>ACTIVE PROJECTS</a>
+        <a className={`hover-underline-animation ${isFinishedShown?"active-dashboard":""}`} href="#" onClick={() => {setIsFinishedShown(true)}}>COMPLETED PROJECTS</a>
         <button className="add-card" onClick={() => setCreatingNewCard(true)}>+</button>
       </div>
       <div className="card-container">
         {cards}
       </div>
       <Sidebar />
-      < ProjectDashboard isDashboard={isDashboard} allCards={allCards} setAllCards={setAllCards} id={1} currId={currId} />
+      < ProjectDashboard setIsDashboard={setIsDashboard} isDashboard={isDashboard} allCards={allCards} setAllCards={setAllCards} id={1} currId={currId} />
     </div>
   );
 }

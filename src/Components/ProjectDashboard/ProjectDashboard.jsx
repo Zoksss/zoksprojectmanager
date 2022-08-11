@@ -10,7 +10,7 @@ function ProjectDashboard(props) {
   const transition = useTransition(props.isDashboard, {
     from: { right: 250, y: 0, opacity: 0 },
     enter: { right: 0, y: 0, opacity: 1 },
-    leave: { right: 250, y: 0, opacity: 0 },
+    leave: { right: -250, y: 0, opacity: 0 },
   });
 
   const taskTextRef = useRef(null);
@@ -66,6 +66,17 @@ function ProjectDashboard(props) {
     props.setAllCards(allc);
   }
 
+  const finishCadrd = () => {
+    let allc = [...props.allCards];
+    let temp = allc[props.currId];
+    let m = props.allCards[props.currId].isFinished;
+    m = true;
+    allc[props.currId].isFinished = m;
+    props.setAllCards(allc);
+    console.log(props.allCards)
+    props.setIsDashboard(false)
+  }
+
   tasksDom = props.currId !== -1 && props.allCards[props.currId].tasks?.map((task, i) => {
     return !task.isFinished && < Task text={task.text} key={i} id={i} deleteTask={deleteTask} finishTask={finishTask}/>
   })
@@ -90,7 +101,7 @@ function ProjectDashboard(props) {
             <div className="underline"></div>
 
             <div className="daskboard-control-buttons">
-              <button className="finish-project">FINISH</button>
+              <button className="finish-project" onClick={() => {finishCadrd()}}>FINISH</button>
               <button className="delete-project">delete</button>
             </div>
           </div>

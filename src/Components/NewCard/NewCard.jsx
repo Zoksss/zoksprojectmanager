@@ -10,7 +10,8 @@ function NewCard(props) {
   const transition = useTransition(props.creatingNewCard, {
     from: { right: 250, y: 0, opacity: 0 },
     enter: { right: 0, y: 0, opacity: 1 },
-    leave: { right: 250, y: 0, opacity: 0 },
+    leave: { right: -250, y: 0, opacity: 0 },
+
   });
   return (
     <>
