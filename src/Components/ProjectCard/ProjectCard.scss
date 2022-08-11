@@ -1,0 +1,119 @@
+@import "../../styles/variables";
+
+.project-card {
+    width: 320px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    margin-top: 50px;
+    padding: 26px 32px;
+    margin-right: 50px;
+    position: relative;
+    padding-bottom: 40px;
+    border-bottom: 12px solid $light;
+    border-radius: 16px 16px 0 0;
+    transition: $transition;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.9);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.09);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.09);
+
+    &:hover{
+        transform: scale(1.03);
+    }
+
+    .progress-bar{
+        background-color: $green;
+        height: 12px;
+        width: 50%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .project-card-top-title {
+        font-size: 14px;
+        color: $light;
+        margin: 0;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .project-card-title {
+        font-size: 20px;
+        color: $primary;
+        font-weight: 700;
+        margin: 0;
+        text-transform: uppercase;
+        margin: 10px 0;
+
+    }
+
+    .project-card-for-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: white;
+        background-color: $primary;
+        padding: 10px 20px;
+        text-align: center;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    .project-card-tasks {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        margin-top: 15px;
+
+        .project-card-tasks-card {
+            width: 80px;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-right: 20px;
+            align-items: center;
+            background-color: $ultralight;
+            -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.9);
+            -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.09);
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.09);
+
+            .project-card-tasks-card-number {
+                font-size: 34px;
+                font-weight: 700;
+                text-align: center;
+                margin: 0;
+            }
+
+            .project-card-tasks-card-desc {
+                font-size: 14px;
+                color: $light;
+                margin: 0;
+                text-align: center;
+            }
+        }
+    }
+
+    .date-added{
+        position: absolute;
+        top: 14px;
+        right: 30px;
+        display: flex;
+            justify-content: center;
+            align-items: center;
+        p{
+            font-size: 12px;
+            font-weight: 600;
+            color: $light
+        }
+        img{
+            height: 12px;
+            aspect-ratio: 1/1;
+            margin-right: 3px;
+        }
+    }
+}

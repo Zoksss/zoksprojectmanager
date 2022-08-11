@@ -1,0 +1,82 @@
+@import "../../styles/variables";
+
+.newcard{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#000000, 0.8);
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .newcard-container{
+        background-color: white;
+        width: 90%;
+        max-width: 400px;
+        padding: 40px 60px 60px 60px;
+        border-radius: 15px;
+
+        .newcard-title{
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            color: $primary;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            label{
+                font-size: 20px;
+                margin: 20px 0 10px 0;
+                font-weight: 600;
+                color: $primary;
+            }
+            input{
+                height: 50px;
+                outline: none;
+                border: 1px solid $light;
+                padding: 5px 15px;
+                font-size: 18px;
+                color: $primary;
+                &::placeholder{
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+            .newcard-form-buttons{
+                display: flex;
+                width: 100%;
+                margin-top: 40px;
+                justify-content: space-between;
+                input{
+                    width: 45%;
+                    height: 80px;
+                    outline: none;
+                    border: none;
+                    border-radius: 15px;
+                    transition: $transition;
+                    &:hover{
+                        transform: scale(1.05);
+                    }
+                }
+                .new-card-create-button{
+                    background: $purpleGradient;
+                    color: white;
+                    font-size: 24px;
+                    font-weight: 700;
+                }
+                .new-card-cancel-button{
+                    background: transparent;
+                    color: $primary;
+                    font-size: 20px;
+                    font-weight: 600;
+                    &:hover{
+                        background: darken($ultralight, 10);
+                    }
+                }
+            }
+        }
+    }
+}
