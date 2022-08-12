@@ -41,7 +41,7 @@ function App() {
       <div className="dashboard-selector-container">
         <h1 className="dashboard-selector-title">Dashboard</h1>
         <a className={`hover-underline-animation ${!isFinishedShown?"active-dashboard":""}`} href="#" onClick={() => setIsFinishedShown(false)}>ACTIVE PROJECTS</a>
-        <a className={`hover-underline-animation ${isFinishedShown?"active-dashboard":""}`} href="#" onClick={() => {setIsFinishedShown(true)}}>COMPLETED PROJECTS</a>
+        <a className={`hover-underline-animation ${isFinishedShown?"active-dashboard":""}`} href="#" onClick={() => {setIsFinishedShown(true)}}>COMPLETED</a>
         <button className="add-card" onClick={() => setCreatingNewCard(true)}>+</button>
       </div>
       <div className="card-container">

@@ -8,9 +8,9 @@ function NewCard(props) {
   const sublineRef = useRef(null);
 
   const transition = useTransition(props.creatingNewCard, {
-    from: { right: 250, y: 0, opacity: 0 },
-    enter: { right: 0, y: 0, opacity: 1 },
-    leave: { right: -250, y: 0, opacity: 0 },
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: {  opacity: 0 },
 
   });
   return (
