@@ -84,16 +84,4 @@
     }
 }
 
-@media only screen and (max-width: 440px) {
-    .newcard-container{
-        padding: 60px 30px 60px 30px !important;
-    }
-    .newcard-form-buttons{
-        input{
-            width: 49% !important;
-        }
-    }
-    .newcard-container{
-        width: 80% !important;
-    }
-}
+@import "../responsive.scss";

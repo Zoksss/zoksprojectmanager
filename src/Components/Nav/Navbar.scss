@@ -41,10 +41,4 @@
     }
 }
 
-@media only screen and (max-width: 440px) {
-    .navbar{
-        h1{
-            margin-left: 60px !important;
-        }
-    }
-}
+@import "../responsive.scss";

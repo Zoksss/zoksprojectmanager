@@ -1,10 +1,8 @@
-import { useState } from "react";
-import logo from './logo.svg';
+import { useState, useEffect} from "react";
 import './App.scss';
 
 import Navbar from './Components/Nav/Navbar';
 import ProjectCard from './Components/ProjectCard/ProjectCard';
-import Sidebar from './Components/Sidebar/Sidebar';
 import NewCard from "./Components/NewCard/NewCard";
 import ProjectDashboard from "./Components/ProjectDashboard/ProjectDashboard";
 
@@ -13,15 +11,22 @@ import "./styles/style.scss";
 
 
 function App() {
-  const [allCards, setAllCards] = useState([]);
+  const [allCards, setAllCards] = useState(() => {
+    const initialValue = JSON.parse(localStorage.getItem("allCards"));
+    return initialValue || [];
+  });
+
   const [creatingNewCard, setCreatingNewCard] = useState(false);
   const [isDashboard, setIsDashboard] = useState(false);
 
   const [isFinishedShown, setIsFinishedShown] = useState(false);
 
-  const [updateDate, setUpdateDate] = useState(false);
   const [currId, setCurrId] = useState(-1);
 
+
+  useEffect(() => {
+    localStorage.setItem("allCards", JSON.stringify(allCards));
+  }, [allCards]);
 
   const creatNewCard = (name, subline) => {
     console.log("new card added" + name + subline);
@@ -32,15 +37,14 @@ function App() {
   }
 
 
-
   const cards = isDashboard === false && allCards.map((card, i) => {
-    return (isFinishedShown ? card.isFinished : !card.isFinished) && < ProjectCard updateDate={updateDate} setUpdateDate={setUpdateDate} key={i} id={i} isDashboard={isDashboard} setIsDashboard={setIsDashboard} name={card.name} subline={card.subline} setCurrId={setCurrId} taskStatus={card.taskStatus} dateAdded={card.dateAdded} />
+    return (isFinishedShown ? card.isFinished : !card.isFinished) && < ProjectCard allCards={allCards} key={i} id={i} isDashboard={isDashboard} setIsDashboard={setIsDashboard} name={card.name} subline={card.subline} setCurrId={setCurrId} taskStatus={card.taskStatus} dateAdded={card.dateAdded} />
   })
 
   return (
     <div className="App">
-      <NewCard creatingNewCard={creatingNewCard} setCreatingNewCard={setCreatingNewCard} creatNewCard={creatNewCard} setUpdateDate={setUpdateDate}/>
-      <Navbar setIsDashboard={setIsDashboard} isDashboard={isDashboard} setUpdateDate={setUpdateDate}/>
+      <NewCard creatingNewCard={creatingNewCard} setCreatingNewCard={setCreatingNewCard} creatNewCard={creatNewCard} />
+      <Navbar setIsDashboard={setIsDashboard} isDashboard={isDashboard} />
       <div className="dashboard-selector-container">
         <h1 className="dashboard-selector-title">Dashboard</h1>
         <a className={`hover-underline-animation ${!isFinishedShown ? "active-dashboard" : ""}`} href="#" onClick={() => setIsFinishedShown(false)}>ACTIVE PROJECTS</a>

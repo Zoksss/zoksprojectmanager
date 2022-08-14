@@ -30,7 +30,8 @@ function ProjectCard(props) {
 
     useEffect(() => {
         DateElement();
-    }, [props.updateDate]);
+    }, [props.isDashboard, props.allCards]);
+
     return (
         <>
             {transition((style, item) => item ?
