@@ -25,7 +25,7 @@ function NewCard(props) {
                 <label>Project subline:</label>
                 <input ref={sublineRef} type="text" placeholder="eg. John Steve"  maxLength={25}/>
                 <div className="newcard-form-buttons">
-                  <input className="new-card-create-button" type="button" value="CREATE" onClick={() => {props.setCreatingNewCard(false); props.creatNewCard(nameRef.current.value, sublineRef.current.value)}}/>
+                  <input className="new-card-create-button" type="button" value="CREATE" onClick={() => {if(nameRef.current.value === "" || nameRef.current.value === " " || sublineRef.current.value === "" || sublineRef.current.value === " ") return; props.setCreatingNewCard(false); props.creatNewCard(nameRef.current.value, sublineRef.current.value)}}/>
                   <input className="new-card-cancel-button" type="button" value="CANCEL" onClick={() => props.setCreatingNewCard(false)}/>
                 </div>
               </form>

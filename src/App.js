@@ -25,13 +25,13 @@ function App() {
   const creatNewCard = (name, subline) => {
     console.log("new card added" + name + subline);
     let t = [...allCards];
-    t.push({ name: name, subline: subline, tasks: [], isFinished: false, taskStatus: [0,0,0]});
+    t.push({ name: name, subline: subline, tasks: [], isFinished: false, taskStatus: [0,0,0], dateAdded: Date.now()});
     setAllCards(t);
     console.log(allCards);
   }
 
   const cards = isDashboard === false && allCards.map((card, i) => {
-    return (isFinishedShown? card.isFinished :  !card.isFinished) && < ProjectCard key={i} id={i} isDashboard={isDashboard} setIsDashboard={setIsDashboard} name={card.name} subline={card.subline} setCurrId={setCurrId} taskStatus={card.taskStatus}/>
+    return (isFinishedShown? card.isFinished :  !card.isFinished) && < ProjectCard key={i} id={i} isDashboard={isDashboard} setIsDashboard={setIsDashboard} name={card.name} subline={card.subline} setCurrId={setCurrId} taskStatus={card.taskStatus} dateAdded={card.dateAdded}/>
   })
 
   return (
@@ -47,11 +47,9 @@ function App() {
       <div className="card-container">
         {cards}
       </div>
-      <Sidebar />
       < ProjectDashboard setIsDashboard={setIsDashboard} isDashboard={isDashboard} allCards={allCards} setAllCards={setAllCards} id={1} currId={currId} />
     </div>
   );
 }
 
 export default App;
-

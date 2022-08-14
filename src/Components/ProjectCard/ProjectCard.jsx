@@ -10,6 +10,15 @@ function ProjectCard(props) {
         enter: { right: 0, y: 0, opacity: 1 },
         leave: { right: 50, y: 0, opacity: 0 },
     });
+
+
+
+    const DateElement = () => {
+        let dateAdded = props.dateAdded;
+        let hours = new Date(Date.now() - dateAdded).getUTCHours;
+        let x = hours;
+        return <p className="date-added-number">{x} MINS AGO</p>
+    }
     return (
         <>
             {transition((style, item) => item ?
@@ -33,7 +42,7 @@ function ProjectCard(props) {
                     </div>
                     <div className="date-added">
                         <img src={ClockImg} alt="clock image" />
-                        <p className="date-added-number">0 MINS AGO</p>
+                        <DateElement />
                     </div>
                     <div className="progress-bar"></div>
                 </animated.div> : ""

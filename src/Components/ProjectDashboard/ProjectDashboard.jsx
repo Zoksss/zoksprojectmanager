@@ -26,7 +26,9 @@ function ProjectDashboard(props) {
     temp.tasks = m;
     allc[props.currId] = temp;
     props.setAllCards(allc);
+    taskTextRef.current.value = "";
     callculateTasks();
+
 
   }
   const deleteTask = (key) => {
@@ -66,15 +68,22 @@ function ProjectDashboard(props) {
     props.setAllCards(allc);
   }
 
-  const finishCadrd = () => {
+  const finishCard = () => {
     let allc = [...props.allCards];
     let temp = allc[props.currId];
     let m = props.allCards[props.currId].isFinished;
     m = true;
     allc[props.currId].isFinished = m;
     props.setAllCards(allc);
-    console.log(props.allCards)
-    props.setIsDashboard(false)
+    console.log(props.allCards);
+    props.setIsDashboard(false);
+  }
+
+  const deleteCard = () => {
+    let allc = [...props.allCards];
+    allc.splice(props.currId, 1);
+    props.setIsDashboard(false);
+    props.setAllCards(allc);
   }
 
   tasksDom = props.currId !== -1 && props.allCards[props.currId].tasks?.map((task, i) => {
@@ -87,8 +96,8 @@ function ProjectDashboard(props) {
       {transition((style, item) => item ?
         <animated.div className="project-dashboard" style={style}>
           <div className="dashboard-card">
-            <h2 className="dashboard-title">Website Redesign</h2>
-            <p className="dashboard-subline">YESILOVEGUITAR</p>
+            <h2 className="dashboard-title">{props.allCards[props.currId].name}</h2>
+            <p className="dashboard-subline">{props.allCards[props.currId].subline}</p>
             <p className="task-title">Tasks</p>
             <div className="add-task-container">
               <input ref={taskTextRef} className="task-input" placeholder="Add new task" />
@@ -101,8 +110,8 @@ function ProjectDashboard(props) {
             <div className="underline"></div>
 
             <div className="daskboard-control-buttons">
-              <button className="finish-project" onClick={() => {finishCadrd()}}>FINISH</button>
-              <button className="delete-project">delete</button>
+              <button className="finish-project" onClick={() => {finishCard()}}>FINISH</button>
+              <button className="delete-project" onClick={() => {deleteCard()}}>delete</button>
             </div>
           </div>
         </animated.div>
