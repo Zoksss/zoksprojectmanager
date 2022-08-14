@@ -19,29 +19,32 @@ function App() {
 
   const [isFinishedShown, setIsFinishedShown] = useState(false);
 
+  const [updateDate, setUpdateDate] = useState(false);
   const [currId, setCurrId] = useState(-1);
 
 
   const creatNewCard = (name, subline) => {
     console.log("new card added" + name + subline);
     let t = [...allCards];
-    t.push({ name: name, subline: subline, tasks: [], isFinished: false, taskStatus: [0,0,0], dateAdded: Date.now()});
+    t.push({ name: name, subline: subline, tasks: [], isFinished: false, taskStatus: [0, 0, 0], dateAdded: Date.now() });
     setAllCards(t);
     console.log(allCards);
   }
 
+
+
   const cards = isDashboard === false && allCards.map((card, i) => {
-    return (isFinishedShown? card.isFinished :  !card.isFinished) && < ProjectCard key={i} id={i} isDashboard={isDashboard} setIsDashboard={setIsDashboard} name={card.name} subline={card.subline} setCurrId={setCurrId} taskStatus={card.taskStatus} dateAdded={card.dateAdded}/>
+    return (isFinishedShown ? card.isFinished : !card.isFinished) && < ProjectCard updateDate={updateDate} setUpdateDate={setUpdateDate} key={i} id={i} isDashboard={isDashboard} setIsDashboard={setIsDashboard} name={card.name} subline={card.subline} setCurrId={setCurrId} taskStatus={card.taskStatus} dateAdded={card.dateAdded} />
   })
 
   return (
     <div className="App">
-      <NewCard creatingNewCard={creatingNewCard} setCreatingNewCard={setCreatingNewCard} creatNewCard={creatNewCard} />
-      <Navbar setIsDashboard={setIsDashboard} isDashboard={isDashboard}/>
+      <NewCard creatingNewCard={creatingNewCard} setCreatingNewCard={setCreatingNewCard} creatNewCard={creatNewCard} setUpdateDate={setUpdateDate}/>
+      <Navbar setIsDashboard={setIsDashboard} isDashboard={isDashboard} setUpdateDate={setUpdateDate}/>
       <div className="dashboard-selector-container">
         <h1 className="dashboard-selector-title">Dashboard</h1>
-        <a className={`hover-underline-animation ${!isFinishedShown?"active-dashboard":""}`} href="#" onClick={() => setIsFinishedShown(false)}>ACTIVE PROJECTS</a>
-        <a className={`hover-underline-animation ${isFinishedShown?"active-dashboard":""}`} href="#" onClick={() => {setIsFinishedShown(true)}}>COMPLETED</a>
+        <a className={`hover-underline-animation ${!isFinishedShown ? "active-dashboard" : ""}`} href="#" onClick={() => setIsFinishedShown(false)}>ACTIVE PROJECTS</a>
+        <a className={`hover-underline-animation ${isFinishedShown ? "active-dashboard" : ""}`} href="#" onClick={() => { setIsFinishedShown(true) }}>COMPLETED</a>
         <button className="add-card" onClick={() => setCreatingNewCard(true)}>+</button>
       </div>
       <div className="card-container">

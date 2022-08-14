@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useTransition, animated } from "react-spring";
 
 import './ProjectCard.scss';
 import ClockImg from "../../../src/images/clock.png"
+import React from "react";
 
 
 function ProjectCard(props) {
@@ -15,10 +17,20 @@ function ProjectCard(props) {
 
     const DateElement = () => {
         let dateAdded = props.dateAdded;
-        let hours = new Date(Date.now() - dateAdded).getUTCHours;
-        let x = hours;
-        return <p className="date-added-number">{x} MINS AGO</p>
+        let string = "";
+        let time = new Date(Date.now()).getUTCMinutes() - new Date(dateAdded).getUTCMinutes();
+        if (time > 59) {
+            time = new Date(Date.now()).getUTCHours() - new Date(dateAdded).getUTCHours();
+            string = `${time} HOURS AGO`;
+        } else {
+            string = `${time} MINUTES AGO`;
+        }
+        return <p className="date-added-number">{string}</p>
     }
+
+    useEffect(() => {
+        DateElement();
+    }, [props.updateDate]);
     return (
         <>
             {transition((style, item) => item ?
