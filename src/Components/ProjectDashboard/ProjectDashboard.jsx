@@ -82,22 +82,22 @@ function ProjectDashboard(props) {
   const deleteCard = () => {
     let allc = [...props.allCards];
     allc.splice(props.currId, 1);
+    props.setCurrId(allc.length-1)
     props.setIsDashboard(false);
     props.setAllCards(allc);
   }
 
-  tasksDom = props.currId !== -1 && props.allCards[props.currId].tasks?.map((task, i) => {
+  tasksDom = props.currId != -1 && props.allCards[props.currId].tasks?.map((task, i) => {
     return !task.isFinished && < Task text={task.text} key={i} id={i} deleteTask={deleteTask} finishTask={finishTask}/>
   })
-
 
   return (
     <>
       {transition((style, item) => item ?
         <animated.div className="project-dashboard" style={style}>
           <div className="dashboard-card">
-            <h2 className="dashboard-title">{props.allCards[props.currId].name}</h2>
-            <p className="dashboard-subline">{props.allCards[props.currId].subline}</p>
+            <h2 className="dashboard-title">{(props.allCards[props.currId]) ? props.allCards[props.currId].name: ""}</h2>
+            <p className="dashboard-subline">{(props.allCards[props.currId]) ?props.allCards[props.currId].subline: ""}</p>
             <p className="task-title">Tasks</p>
             <div className="add-task-container">
               <input ref={taskTextRef} className="task-input" placeholder="Add new task" />
@@ -108,7 +108,6 @@ function ProjectDashboard(props) {
               {tasksDom}
             </div>
             <div className="underline"></div>
-
             <div className="daskboard-control-buttons">
               <button className="finish-project" onClick={() => {finishCard()}}>FINISH</button>
               <button className="delete-project" onClick={() => {deleteCard()}}>delete</button>

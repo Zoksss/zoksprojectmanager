@@ -18,12 +18,11 @@ function ProjectCard(props) {
     const DateElement = () => {
         let dateAdded = props.dateAdded;
         let string = "";
-        let time = new Date(Date.now()).getUTCMinutes() - new Date(dateAdded).getUTCMinutes();
+        let time = new Date(Date.now() - new Date(dateAdded)).getUTCMinutes();
+        string = `${time} MINUTES AGO`;
         if (time > 59) {
-            time = new Date(Date.now()).getUTCHours() - new Date(dateAdded).getUTCHours();
+            time = new Date(Date.now() - new Date(dateAdded)).getUTCHours();
             string = `${time} HOURS AGO`;
-        } else {
-            string = `${time} MINUTES AGO`;
         }
         return <p className="date-added-number">{string}</p>
     }
@@ -57,7 +56,7 @@ function ProjectCard(props) {
                         <img src={ClockImg} alt="clock image" />
                         <DateElement />
                     </div>
-                    <div className="progress-bar"></div>
+                    <div className="progress-bar" style={{ width: 100/(props.taskStatus[0] / props.taskStatus[1]) + "%"}}></div>
                 </animated.div> : ""
             )}
         </>

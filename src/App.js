@@ -54,7 +54,7 @@ function App() {
       <div className="card-container">
         {cards}
       </div>
-      < ProjectDashboard setIsDashboard={setIsDashboard} isDashboard={isDashboard} allCards={allCards} setAllCards={setAllCards} id={1} currId={currId} />
+      < ProjectDashboard setCurrId={setCurrId}setIsDashboard={setIsDashboard} isDashboard={isDashboard} allCards={allCards} setAllCards={setAllCards} id={1} currId={currId} />
     </div>
   );
 }
