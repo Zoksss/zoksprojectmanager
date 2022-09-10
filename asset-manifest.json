@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/zoksprojectmanager/static/css/main.26901306.css",
-    "main.js": "/zoksprojectmanager/static/js/main.f20ac90a.js",
+    "main.js": "/zoksprojectmanager/static/js/main.03fe7fa1.js",
     "index.html": "/zoksprojectmanager/index.html",
     "main.26901306.css.map": "/zoksprojectmanager/static/css/main.26901306.css.map",
-    "main.f20ac90a.js.map": "/zoksprojectmanager/static/js/main.f20ac90a.js.map"
+    "main.03fe7fa1.js.map": "/zoksprojectmanager/static/js/main.03fe7fa1.js.map"
   },
   "entrypoints": [
     "static/css/main.26901306.css",
-    "static/js/main.f20ac90a.js"
+    "static/js/main.03fe7fa1.js"
   ]
 }
