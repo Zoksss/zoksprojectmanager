@@ -20,9 +20,8 @@ function ProjectCard(props) {
         let string = "";
         let time = new Date(Date.now() - new Date(dateAdded)).getUTCMinutes();
         string = `${time} MINUTES AGO`;
-        if (time > 59) {
-            time = new Date(Date.now() - new Date(dateAdded)).getUTCHours();
-            string = `${time} HOURS AGO`;
+        if (time > 60) {
+            string = `${time/60} HOURS AGO`;
         }
         return <p className="date-added-number">{string}</p>
     }
