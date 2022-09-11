@@ -13,15 +13,20 @@ function ProjectCard(props) {
         leave: { right: 50, y: 0, opacity: 0 },
     });
 
-
+    function millisToMinutesAndSeconds(millis) {
+        return Math.floor(millis / 60000);
+      }
 
     const DateElement = () => {
         let dateAdded = props.dateAdded;
         let string = "";
-        let time = new Date(Date.now() - new Date(dateAdded)).getUTCMinutes();
-        string = `${time} MINUTES AGO`;
-        if (time > 60) {
-            string = `${time/60} HOURS AGO`;
+        let timems = Date.now() - dateAdded;
+        let time = millisToMinutesAndSeconds(timems);
+        console.log(time)
+        if (time >= 59) {
+            string = `${Math.round(time / 60)} HOURS AGO`;
+        } else {
+            string = `${time} MINUTES AGO`;
         }
         return <p className="date-added-number">{string}</p>
     }
@@ -55,7 +60,7 @@ function ProjectCard(props) {
                         <img src={ClockImg} alt="clock image" />
                         <DateElement />
                     </div>
-                    <div className="progress-bar" style={{ width: 100/(props.taskStatus[0] / props.taskStatus[1]) + "%"}}></div>
+                    <div className="progress-bar" style={{ width: 100 / (props.taskStatus[0] / props.taskStatus[1]) + "%" }}></div>
                 </animated.div> : ""
             )}
         </>
